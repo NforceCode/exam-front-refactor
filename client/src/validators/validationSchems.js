@@ -5,13 +5,13 @@ import valid from 'card-validator';
 
 export default {
     LoginSchem: yup.object().shape({
-        email: yup.string().email('check email').required('required'),
-        password: yup.string().test('test-password','min 6 symbols',value => (value && value.trim().length>=6)).required('required')
+        email: yup.string().email('Invalid email').required('Email is required'),
+        password: yup.string().test('test-password','Minimum password length is 6 symbols',value => (value && value.trim().length>=6)).required('Password is required')
     }),
     RegistrationSchem: yup.object().shape({
-        email: yup.string().email('check email').required('Email is required'),
-        password: yup.string().test('test-password','min 6 symbols',value => (value && value.trim().length>=6)).required('required'),
-        confirmPassword: yup.string().required('confirm password is required').oneOf([yup.ref('password')],'confirmation pass must match password'),
+        email: yup.string().email('Invalid email').required('email is required'),
+        password: yup.string().test('test-password','Minimum password length is 6 symbols',value => (value && value.trim().length>=6)).required('Password is required'),
+        confirmPassword: yup.string().required('Confirm password is required').oneOf([yup.ref('password')],'Passwords must match'),
         firstName: yup.string().test('test-firstName','required',value => (value && value.trim().length>=1)).required('First Name is required'),
         lastName: yup.string().test('test-lastName','required',value => (value && value.trim().length>=1)).required('Last Name is required'),
         displayName: yup.string().test('test-displayName','required',value => (value && value.trim().length>=1)).required('Display Name is required'),
